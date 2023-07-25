@@ -7,7 +7,7 @@ void player2Choice(char ArrBoard[3][3]);
 void gameLogic(char ArrBoard[3][3]);
 
 using namespace std;
-int p1Score = 0, p2Score = 0;
+int p1Score = 0, p2Score = 0, checkBoard = 0;
 int main()
 {
     char ArrBoard[3][3] ={{'1', '2', '3'},      // Array the will map the structure of the board
@@ -17,17 +17,29 @@ int main()
     displayBoard(ArrBoard); // Displays the board for the game
 
     while(p1Score == 0 && p2Score == 0){
+        cout << checkBoard << endl;
         player1Choice(ArrBoard);    // Function call for player 1's input
         displayBoard(ArrBoard);     // Displays the updated board
         gameLogic(ArrBoard);
 
-        if(p1Score != 0 || p2Score != 0){
+        if(p1Score != 0 || p2Score != 0 || checkBoard ==9 ){
             break;
         }
-
+        cout << checkBoard << endl;
         player2Choice(ArrBoard);    // Function call for player 2's input
         displayBoard(ArrBoard);     // Displays the updated board
         gameLogic(ArrBoard);
+    }
+
+    cout << endl;
+    if(p1Score > p2Score){
+        cout << "Player 1 wins\n";
+    }
+    else if(p1Score < p2Score){
+        cout << "Player 2 wins\n";
+    }
+    else{
+        cout << "No one win\n";
     }
 
     return 0;
@@ -37,7 +49,6 @@ void displayBoard(char ArrBoard[3][3]){
     for(int i = 0; i < 3; i++){
         for(int j = 0; j < 3; j++){
             cout << ArrBoard[i][j] << " ";
-
         }
         cout << endl;
     }
@@ -48,36 +59,45 @@ void player1Choice(char ArrBoard[3][3]){
 
     top:
     // Ask input for player 1
-    cout << "\n\n\n";
+    cout << "\n";
     cout << "Player 1, Enter your move: ";
     cin >> p1;
 
     if(p1 == '1' && ArrBoard[0][0] != 'O' &&  ArrBoard[0][0] != 'X'){
         ArrBoard[0][0] = 'X';
+        checkBoard++;
     }
     else if(p1 == '2' && ArrBoard[0][1] != 'O' && ArrBoard[0][1] != 'X'){
         ArrBoard[0][1] = 'X';
+        checkBoard++;
     }
     else if(p1 == '3' && ArrBoard[0][2] != 'O' && ArrBoard[0][2] != 'X'){
         ArrBoard[0][2] = 'X';
+        checkBoard++;
     }
     else if(p1 == '4' && ArrBoard[1][0] != 'O' && ArrBoard[1][0] != 'X'){
         ArrBoard[1][0] = 'X';
+        checkBoard++;
     }
     else if(p1 == '5' && ArrBoard[1][1] != 'O' && ArrBoard[1][1] != 'X'){
         ArrBoard[1][1] = 'X';
+        checkBoard++;
     }
     else if(p1 == '6' && ArrBoard[1][2] != 'O' && ArrBoard[1][2] != 'X'){
         ArrBoard[1][2] = 'X';
+        checkBoard++;
     }
     else if(p1 == '7' && ArrBoard[2][0] != 'O' && ArrBoard[2][0] != 'X'){
         ArrBoard[2][0] = 'X';
+        checkBoard++;
     }
     else if(p1 == '8' && ArrBoard[2][1] != 'O' && ArrBoard[2][1] != 'X'){
         ArrBoard[2][1] = 'X';
+        checkBoard++;
     }
     else if(p1 == '9' && ArrBoard[2][2] != 'O' && ArrBoard[2][2] != 'X'){
         ArrBoard[2][2] = 'X';
+        checkBoard++;
     }
     else{
         cout << "Invalid Input\n";
@@ -98,30 +118,39 @@ void player2Choice(char ArrBoard[3][3]){
 
     if(p2 == '1' && ArrBoard[0][0] != 'X' && ArrBoard[0][0] != 'O'){
         ArrBoard[0][0] = 'O';
+        checkBoard++;
     }
     else if(p2 == '2' && ArrBoard[0][1] != 'X' && ArrBoard[0][1] != 'O'){
         ArrBoard[0][1] = 'O';
+        checkBoard++;
     }
     else if(p2 == '3' && ArrBoard[0][2] != 'X' && ArrBoard[0][2] != 'O'){
         ArrBoard[0][2] = 'O';
+        checkBoard++;
     }
     else if(p2 == '4' && ArrBoard[1][0] != 'X' && ArrBoard[1][0] != 'O'){
         ArrBoard[1][0] = 'O';
+        checkBoard++;
     }
     else if(p2 == '5' && ArrBoard[1][1] != 'X' && ArrBoard[1][1] != 'O'){
         ArrBoard[1][1] = 'O';
+        checkBoard++;
     }
     else if(p2 == '6' && ArrBoard[1][2] != 'X' && ArrBoard[1][2] != 'O'){
         ArrBoard[1][2] = 'O';
+        checkBoard++;
     }
     else if(p2 == '7' && ArrBoard[2][0] != 'X' && ArrBoard[2][0] != 'O'){
         ArrBoard[2][0] = 'O';
+        checkBoard++;
     }
     else if(p2 == '8' && ArrBoard[2][1] != 'X' && ArrBoard[2][1] != 'O'){
         ArrBoard[2][1] = 'O';
+        checkBoard++;
     }
     else if(p2 == '9' && ArrBoard[2][2] != 'X' && ArrBoard[2][2] != 'O'){
         ArrBoard[2][2] = 'O';
+        checkBoard++;
     }
     else{
         cout << "Invalid Input\n";
