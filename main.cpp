@@ -17,6 +17,7 @@ char p1;
 
 int main()
 {
+    gameMenu:
     int gameMode;
     char ArrBoard[3][3] ={{'1', '2', '3'},      // Array the will map the structure of the board
                           {'4', '5', '6'},
@@ -50,7 +51,7 @@ int main()
                 cout << "Player 1 wins\n";
             }
             else if(p1Score < compScore){
-                cout << "Player 2 wins\n";
+                cout << "Computer wins\n";
             }
             else{
                 cout << "No one win\n";
@@ -79,7 +80,7 @@ int main()
                 cout << "Player 1 wins\n";
             }
             else if(p1Score < p2Score){
-                cout << "Computer wins\n";
+                cout << "Player 2 wins\n";
             }
             else{
                 cout << "No one win\n";
@@ -93,6 +94,12 @@ int main()
         default:
             cout << "Invalid Input";
     }
+
+    system("PAUSE");
+    system("CLS");
+    p1Score = 0, p2Score = 0, compScore = 0, checkBoard = 0;
+    goto gameMenu;
+
 }
 
 void gameMenu(){
@@ -231,12 +238,419 @@ void computerChoice(char ArrBoard[3][3]){
     else if(moveCtr > 1){
         if((ArrBoard[0][0] == 'X' && ArrBoard[0][1] == 'X' && ArrBoard[0][2] != 'O') ||
            (ArrBoard[2][0] == 'X' && ArrBoard[1][1] == 'X' && ArrBoard[0][2] != 'O') ||
-           (ArrBoard[1][2] == 'X' && ArrBoard[2][2] == 'X' && ArrBoard[0][2] != 'O')){
-            ArrBoard[0][2] = 'O';
+           (ArrBoard[1][2] == 'X' && ArrBoard[2][2] == 'X' && ArrBoard[0][2] != 'O')
+           ){
+                ArrBoard[0][2] = 'O';
+                checkBoard++;
+                randNum = 2;
         }
-        //else if(ArrBoard[2][0] == 'X' && ArrBoard[2][1] == 'X' && ArrBoard[0][2] != 'O'){
-        //    ArrBoard[0][2] = 'O';
-        //}
+        else if((ArrBoard[1][0] == 'X' && ArrBoard[1][1] == 'X' && ArrBoard[1][2] != 'O') ||
+            (ArrBoard[0][2] == 'X' && ArrBoard[2][2] == 'X' && ArrBoard[1][2] != 'O')
+            ){
+                ArrBoard[1][2] = 'O';
+                checkBoard++;
+                randNum = 5;
+        }
+        else if((ArrBoard[2][0] == 'X' && ArrBoard[2][1] == 'X' && ArrBoard[2][2] != 'O') ||
+            (ArrBoard[0][0] == 'X' && ArrBoard[1][1] == 'X' && ArrBoard[2][2] != 'O') ||
+            (ArrBoard[0][2] == 'X' && ArrBoard[1][2] == 'X' && ArrBoard[2][2] != 'O')
+            ){
+                ArrBoard[2][2] = 'O';
+                checkBoard++;
+                randNum = 8;
+        }
+        else if((ArrBoard[0][1] == 'X' && ArrBoard[0][2] == 'X' && ArrBoard[0][0] != 'O') ||
+            (ArrBoard[1][1] == 'X' && ArrBoard[2][2] == 'X' && ArrBoard[0][0] != 'O') ||
+            (ArrBoard[1][0] == 'X' && ArrBoard[2][0] == 'X' && ArrBoard[0][0] != 'O')
+            ){
+                ArrBoard[0][0] = 'O';
+                checkBoard++;
+                randNum = 0;
+        }
+        else if((ArrBoard[1][1] == 'X' && ArrBoard[1][2] == 'X' && ArrBoard[1][0] != 'O') ||
+            (ArrBoard[0][0] == 'X' && ArrBoard[2][0] == 'X' && ArrBoard[1][0] != 'O')
+            ){
+                ArrBoard[1][0] = 'O';
+                checkBoard++;
+                randNum = 3;
+        }
+        else if((ArrBoard[2][1] == 'X' && ArrBoard[2][2] == 'X' && ArrBoard[2][0] != 'O') ||
+            (ArrBoard[0][2] == 'X' && ArrBoard[1][1] == 'X' && ArrBoard[2][0] != 'O') ||
+            (ArrBoard[0][0] == 'X' && ArrBoard[1][0] == 'X' && ArrBoard[2][0] != 'O')
+            ){
+                ArrBoard[2][0] = 'O';
+                checkBoard++;
+                randNum = 6;
+        }
+        else if((ArrBoard[1][0] == 'X' && ArrBoard[1][2] == 'X' && ArrBoard[1][1] != 'O') ||
+            (ArrBoard[0][1] == 'X' && ArrBoard[2][1] == 'X' && ArrBoard[1][1] != 'O') ||
+            (ArrBoard[0][0] == 'X' && ArrBoard[2][2] == 'X' && ArrBoard[1][1] != 'O') ||
+            (ArrBoard[0][2] == 'X' && ArrBoard[2][0] == 'X' && ArrBoard[1][1] != 'O')
+            ){
+                ArrBoard[1][1] = 'O';
+                checkBoard++;
+                randNum = 4;
+        }
+        else if((ArrBoard[0][0] == 'X' && ArrBoard[0][2] == 'X' && ArrBoard[0][1] != 'O') ||
+            (ArrBoard[1][1] == 'X' && ArrBoard[2][1] == 'X' && ArrBoard[0][1] != 'O')
+            ){
+                ArrBoard[0][1] = 'O';
+                checkBoard++;
+                randNum = 1;
+        }
+        else if((ArrBoard[2][0] == 'X' && ArrBoard[2][2] == 'X' && ArrBoard[0][1] != 'O') ||
+            (ArrBoard[0][1] == 'X' && ArrBoard[1][1] == 'X' && ArrBoard[0][1] != 'O')
+            ){
+                ArrBoard[2][1] = 'O';
+                checkBoard++;
+                randNum = 7;
+        }
+        else{
+            if(ArrBoard[0][0] == 'O'){
+                if(ArrBoard[0][1] != 'O' && ArrBoard[0][1] != 'X' && ArrBoard[0][2] == 'O'){
+                    ArrBoard[0][1] = 'O';
+                    checkBoard++;
+                    randNum = 1;
+                }
+                else if(ArrBoard[1][0] != 'O' && ArrBoard[1][0] != 'X' && ArrBoard[2][0] == 'O'){
+                    ArrBoard[1][0] = 'O';
+                    checkBoard++;
+                    randNum = 3;
+                }
+                else if(ArrBoard[1][1] != 'O' && ArrBoard[1][1] != 'X' && ArrBoard[2][2] == 'O'){
+                    ArrBoard[1][1] = 'O';
+                    checkBoard++;
+                    randNum = 4;
+                }
+                else if(ArrBoard[0][1] != 'O' && ArrBoard[0][1] != 'X' && ArrBoard[0][2] != 'O'){
+                    ArrBoard[0][1] = 'O';
+                    checkBoard++;
+                    randNum = 1;
+                }
+                else if(ArrBoard[1][0] != 'O' && ArrBoard[1][0] != 'X' && ArrBoard[2][0] != 'O'){
+                    ArrBoard[1][0] = 'O';
+                    checkBoard++;
+                    randNum = 3;
+                }
+                else if(ArrBoard[1][1] != 'O' && ArrBoard[1][1] != 'X' && ArrBoard[2][2] != 'O'){
+                    ArrBoard[1][1] = 'O';
+                    checkBoard++;
+                    randNum = 4;
+                }
+            }
+            else if(ArrBoard[1][0] == 'O'){
+                if(ArrBoard[1][1] != 'O' && ArrBoard[1][1] != 'X' && ArrBoard[1][2] == 'O'){
+                    ArrBoard[1][1] = 'O';
+                    checkBoard++;
+                    randNum = 4;
+                }
+                else if(ArrBoard[0][0] != 'O' && ArrBoard[0][0] != 'X' && ArrBoard[2][0] == 'O'){
+                    ArrBoard[0][0] = 'O';
+                    checkBoard++;
+                    randNum = 0;
+                }
+                else if(ArrBoard[2][0] != 'O' && ArrBoard[2][0] != 'X' && ArrBoard[0][0] == 'O'){
+                    ArrBoard[2][0] = 'O';
+                    checkBoard++;
+                    randNum = 6;
+                }
+                else if(ArrBoard[1][1] != 'O' && ArrBoard[1][1] != 'X' && ArrBoard[1][2] != 'O'){
+                    ArrBoard[1][1] = 'O';
+                    checkBoard++;
+                    randNum = 4;
+                }
+                else if(ArrBoard[0][0] != 'O' && ArrBoard[0][0] != 'X' && ArrBoard[2][0] != 'O'){
+                    ArrBoard[0][0] = 'O';
+                    checkBoard++;
+                    randNum = 0;
+                }
+                else if(ArrBoard[2][0] != 'O' && ArrBoard[2][0] != 'X' && ArrBoard[0][0] != 'O'){
+                    ArrBoard[2][0] = 'O';
+                    checkBoard++;
+                    randNum = 6;
+                }
+            }
+            else if(ArrBoard[2][0] == 'O'){
+                if(ArrBoard[1][0] != 'O' && ArrBoard[1][0] != 'X' && ArrBoard[0][0] == 'O'){
+                    ArrBoard[1][0] = 'O';
+                    checkBoard++;
+                    randNum = 3;
+                }
+                else if(ArrBoard[2][1] != 'O' && ArrBoard[2][1] != 'X' && ArrBoard[2][2] == 'O'){
+                    ArrBoard[2][1] = 'O';
+                    checkBoard++;
+                    randNum = 7;
+                }
+                else if(ArrBoard[1][1] != 'O' && ArrBoard[1][1] != 'X' && ArrBoard[0][2] == 'O'){
+                    ArrBoard[1][1] = 'O';
+                    checkBoard++;
+                    randNum = 4;
+                }
+                else if(ArrBoard[1][0] != 'O' && ArrBoard[1][0] != 'X' && ArrBoard[0][0] != 'O'){
+                    ArrBoard[1][0] = 'O';
+                    checkBoard++;
+                    randNum = 3;
+                }
+                else if(ArrBoard[2][1] != 'O' && ArrBoard[2][1] != 'X' && ArrBoard[2][2] != 'O'){
+                    ArrBoard[2][1] = 'O';
+                    checkBoard++;
+                    randNum = 7;
+                }
+                else if(ArrBoard[1][1] != 'O' && ArrBoard[1][1] != 'X' && ArrBoard[0][2] != 'O'){
+                    ArrBoard[1][1] = 'O';
+                    checkBoard++;
+                    randNum = 4;
+                }
+            }
+            else if(ArrBoard[0][1] == 'O'){
+                if(ArrBoard[1][1] != 'O' && ArrBoard[1][1] != 'X' && ArrBoard[2][1] == 'O'){
+                    ArrBoard[1][1] = 'O';
+                    checkBoard++;
+                    randNum = 4;
+                }
+                else if(ArrBoard[0][0] != 'O' && ArrBoard[0][0] != 'X' && ArrBoard[0][2] == 'O'){
+                    ArrBoard[0][0] = 'O';
+                    checkBoard++;
+                    randNum = 0;
+                }
+                else if(ArrBoard[0][2] != 'O' && ArrBoard[0][2] != 'X' && ArrBoard[0][0] == 'O'){
+                    ArrBoard[0][2] = 'O';
+                    checkBoard++;
+                    randNum = 2;
+                }
+                else if(ArrBoard[1][1] != 'O' && ArrBoard[1][1] != 'X' && ArrBoard[2][1] != 'O'){
+                    ArrBoard[1][1] = 'O';
+                    checkBoard++;
+                    randNum = 4;
+                }
+                else if(ArrBoard[0][0] != 'O' && ArrBoard[0][0] != 'X' && ArrBoard[0][2] != 'O'){
+                    ArrBoard[0][0] = 'O';
+                    checkBoard++;
+                    randNum = 0;
+                }
+                else if(ArrBoard[0][2] != 'O' && ArrBoard[0][2] != 'X' && ArrBoard[0][0] != 'O'){
+                    ArrBoard[0][2] = 'O';
+                    checkBoard++;
+                    randNum = 2;
+                }
+            }
+            else if(ArrBoard[1][1] == 'O'){
+                if(ArrBoard[1][0] != 'O' && ArrBoard[1][0] != 'X' && ArrBoard[1][2] == 'O'){
+                    ArrBoard[1][0] = 'O';
+                    checkBoard++;
+                    randNum = 3;
+                }
+                else if(ArrBoard[1][2] != 'O' && ArrBoard[1][2] != 'X' && ArrBoard[1][0] == 'O'){
+                    ArrBoard[1][2] = 'O';
+                    checkBoard++;
+                    randNum = 5;
+                }
+                else if(ArrBoard[0][1] != 'O' && ArrBoard[0][1] != 'X' && ArrBoard[2][1] == 'O'){
+                    ArrBoard[0][1] = 'O';
+                    checkBoard++;
+                    randNum = 1;
+                }
+                else if(ArrBoard[2][1] != 'O' && ArrBoard[2][1] != 'X' && ArrBoard[0][1] == 'O'){
+                    ArrBoard[2][1] = 'O';
+                    checkBoard++;
+                    randNum = 7;
+                }
+                else if(ArrBoard[0][0] != 'O' && ArrBoard[0][0] != 'X' && ArrBoard[2][2] == 'O'){
+                    ArrBoard[0][0] = 'O';
+                    checkBoard++;
+                    randNum = 0;
+                }
+                else if(ArrBoard[2][2] != 'O' && ArrBoard[2][2] != 'X' && ArrBoard[0][0] == 'O'){
+                    ArrBoard[2][2] = 'O';
+                    checkBoard++;
+                    randNum = 8;
+                }
+                else if(ArrBoard[0][2] != 'O' && ArrBoard[0][2] != 'X' && ArrBoard[2][0] == 'O'){
+                    ArrBoard[0][2] = 'O';
+                    checkBoard++;
+                    randNum = 2;
+                }
+                else if(ArrBoard[2][0] != 'O' && ArrBoard[2][0] != 'X' && ArrBoard[0][2] == 'O'){
+                    ArrBoard[2][0] = 'O';
+                    checkBoard++;
+                    randNum = 6;
+                }
+
+
+
+
+                else if(ArrBoard[1][0] != 'O' && ArrBoard[1][0] != 'X' && ArrBoard[1][2] != 'O'){
+                    ArrBoard[1][0] = 'O';
+                    checkBoard++;
+                    randNum = 3;
+                }
+
+                else if(ArrBoard[1][2] != 'O' && ArrBoard[1][2] != 'X' && ArrBoard[1][0] != 'O'){
+                    ArrBoard[1][2] = 'O';
+                    checkBoard++;
+                    randNum = 5;
+                }
+                else if(ArrBoard[0][1] != 'O' && ArrBoard[0][1] != 'X' && ArrBoard[2][1] != 'O'){
+                    ArrBoard[0][1] = 'O';
+                    checkBoard++;
+                    randNum = 1;
+                }
+                else if(ArrBoard[2][1] != 'O' && ArrBoard[2][1] != 'X' && ArrBoard[0][1] != 'O'){
+                    ArrBoard[2][1] = 'O';
+                    checkBoard++;
+                    randNum = 7;
+                }
+                else if(ArrBoard[0][0] != 'O' && ArrBoard[0][0] != 'X' && ArrBoard[2][2] != 'O'){
+                    ArrBoard[0][0] = 'O';
+                    checkBoard++;
+                    randNum = 0;
+                }
+                else if(ArrBoard[2][2] != 'O' && ArrBoard[2][2] != 'X' && ArrBoard[0][0] != 'O'){
+                    ArrBoard[2][2] = 'O';
+                    checkBoard++;
+                    randNum = 8;
+                }
+                else if(ArrBoard[0][2] != 'O' && ArrBoard[0][2] != 'X' && ArrBoard[2][0] != 'O'){
+                    ArrBoard[0][2] = 'O';
+                    checkBoard++;
+                    randNum = 2;
+                }
+                else if(ArrBoard[2][0] != 'O' && ArrBoard[2][0] != 'X' && ArrBoard[0][2] != 'O'){
+                    ArrBoard[2][0] = 'O';
+                    checkBoard++;
+                    randNum = 6;
+                }
+            }
+            else if(ArrBoard[2][1] == 'O'){
+                if(ArrBoard[1][1] != 'O' && ArrBoard[1][1] != 'X' && ArrBoard[0][1] == 'O'){
+                    ArrBoard[1][1] = 'O';
+                    checkBoard++;
+                    randNum = 4;
+                }
+                else if(ArrBoard[2][0] != 'O' && ArrBoard[2][0] != 'X' && ArrBoard[2][2] == 'O'){
+                    ArrBoard[2][0] = 'O';
+                    checkBoard++;
+                    randNum = 6;
+                }
+                else if(ArrBoard[2][2] != 'O' && ArrBoard[2][2] != 'X' && ArrBoard[2][0] == 'O'){
+                    ArrBoard[2][2] = 'O';
+                    checkBoard++;
+                    randNum = 8;
+                }
+                else if(ArrBoard[1][1] != 'O' && ArrBoard[1][1] != 'X' && ArrBoard[0][1] != 'O'){
+                    ArrBoard[1][1] = 'O';
+                    checkBoard++;
+                    randNum = 4;
+                }
+                else if(ArrBoard[2][0] != 'O' && ArrBoard[2][0] != 'X' && ArrBoard[2][2] != 'O'){
+                    ArrBoard[2][0] = 'O';
+                    checkBoard++;
+                    randNum = 6;
+                }
+                else if(ArrBoard[2][2] != 'O' && ArrBoard[2][2] != 'X' && ArrBoard[2][0] != 'O'){
+                    ArrBoard[2][2] = 'O';
+                    checkBoard++;
+                    randNum = 8;
+                }
+            }
+            else if(ArrBoard[0][2] == 'O'){
+                if(ArrBoard[0][1] != 'O' && ArrBoard[0][1] != 'X' && ArrBoard[0][0] == 'O'){
+                    ArrBoard[0][1] = 'O';
+                    checkBoard++;
+                    randNum = 1;
+                }
+                else if(ArrBoard[1][2] != 'O' && ArrBoard[1][2] != 'X' && ArrBoard[2][2] == 'O'){
+                    ArrBoard[1][2] = 'O';
+                    checkBoard++;
+                    randNum = 5;
+                }
+                else if(ArrBoard[1][1] != 'O' && ArrBoard[1][1] != 'X' && ArrBoard[2][0] == 'O'){
+                    ArrBoard[1][1] = 'O';
+                    checkBoard++;
+                    randNum = 6;
+                }
+                else if(ArrBoard[0][1] != 'O' && ArrBoard[0][1] != 'X' && ArrBoard[0][0] != 'O'){
+                    ArrBoard[0][1] = 'O';
+                    checkBoard++;
+                    randNum = 1;
+                }
+                else if(ArrBoard[1][2] != 'O' && ArrBoard[1][2] != 'X' && ArrBoard[2][2] != 'O'){
+                    ArrBoard[1][2] = 'O';
+                    checkBoard++;
+                    randNum = 5;
+                }
+                else if(ArrBoard[1][1] != 'O' && ArrBoard[1][1] != 'X' && ArrBoard[2][0] != 'O'){
+                    ArrBoard[1][1] = 'O';
+                    checkBoard++;
+                    randNum = 6;
+                }
+            }
+            else if(ArrBoard[1][2] == 'O'){
+                if(ArrBoard[1][1] != 'O' && ArrBoard[1][1] != 'X' && ArrBoard[1][0] == 'O'){
+                    ArrBoard[1][1] = 'O';
+                    checkBoard++;
+                    randNum = 4;
+                }
+                else if(ArrBoard[0][2] != 'O' && ArrBoard[0][2] != 'X' && ArrBoard[2][2] == 'O'){
+                    ArrBoard[0][2] = 'O';
+                    checkBoard++;
+                    randNum = 2;
+                }
+                else if(ArrBoard[2][2] != 'O' && ArrBoard[2][2] != 'X' && ArrBoard[0][2] == 'O'){
+                    ArrBoard[2][2] = 'O';
+                    checkBoard++;
+                    randNum = 8;
+                }
+                else if(ArrBoard[1][1] != 'O' && ArrBoard[1][1] != 'X' && ArrBoard[1][0] != 'O'){
+                    ArrBoard[1][1] = 'O';
+                    checkBoard++;
+                    randNum = 4;
+                }
+                else if(ArrBoard[0][2] != 'O' && ArrBoard[0][2] != 'X' && ArrBoard[2][2] != 'O'){
+                    ArrBoard[0][2] = 'O';
+                    checkBoard++;
+                    randNum = 2;
+                }
+                else if(ArrBoard[2][2] != 'O' && ArrBoard[2][2] != 'X' && ArrBoard[0][2] != 'O'){
+                    ArrBoard[2][2] = 'O';
+                    checkBoard++;
+                    randNum = 8;
+                }
+            }
+            else if(ArrBoard[2][2] == 'O'){
+                if(ArrBoard[1][2] != 'O' && ArrBoard[1][2] != 'X' && ArrBoard[0][2] == 'O'){
+                    ArrBoard[1][2] = 'O';
+                    checkBoard++;
+                    randNum = 5;
+                }
+                else if(ArrBoard[2][1] != 'O' && ArrBoard[2][1] != 'X' && ArrBoard[2][0] == 'O'){
+                    ArrBoard[2][1] = 'O';
+                    checkBoard++;
+                    randNum = 7;
+                }
+                else if(ArrBoard[1][1] != 'O' && ArrBoard[1][1] != 'X' && ArrBoard[0][0] == 'O'){
+                    ArrBoard[1][1] = 'O';
+                    checkBoard++;
+                    randNum = 4;
+                }
+
+                else if(ArrBoard[1][2] != 'O' && ArrBoard[1][2] != 'X' && ArrBoard[0][2] != 'O'){
+                    ArrBoard[1][2] = 'O';
+                    checkBoard++;
+                    randNum = 5;
+                }
+                else if(ArrBoard[2][1] != 'O' && ArrBoard[2][1] != 'X' && ArrBoard[2][0] != 'O'){
+                    ArrBoard[2][1] = 'O';
+                    checkBoard++;
+                    randNum = 7;
+                }
+                else if(ArrBoard[1][1] != 'O' && ArrBoard[1][1] != 'X' && ArrBoard[0][0] != 'O'){
+                    ArrBoard[1][1] = 'O';
+                    checkBoard++;
+                    randNum = 4;
+                }
+            }
+        }
     }
 
     // Display the computer's move
