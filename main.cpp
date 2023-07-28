@@ -4,7 +4,7 @@
 
 void gameMenu();
 void displayBoard(char ArrBoard[3][3]);
-void computerChoice(char ArrBoard[3][3]);
+void computerChoice(char ArrBoard[3][3], char arrayMoves[9]);
 void player1Choice(char ArrBoard[3][3]);
 void player2Choice(char ArrBoard[3][3]);
 void gameLogic(char ArrBoard[3][3]);
@@ -12,13 +12,13 @@ void gameLogic(char ArrBoard[3][3]);
 using namespace std;
 
 int p1Score = 0, p2Score = 0, compScore = 0, checkBoard = 0;
-char arrayMoves[9] = {'1', '2', '3', '4', '5', '6', '7', '8', '9'};
 char p1;
 
 int main()
 {
     gameMenu:
     int gameMode;
+    char arrayMoves[9] = {'1', '2', '3', '4', '5', '6', '7', '8', '9'};
     char ArrBoard[3][3] ={{'1', '2', '3'},      // Array the will map the structure of the board
                           {'4', '5', '6'},
                           {'7', '8', '9'}};
@@ -41,7 +41,7 @@ int main()
                     break;
                 }
 
-                computerChoice(ArrBoard);    // Function call for player 2's input
+                computerChoice(ArrBoard, arrayMoves);    // Function call for player 2's input
                 displayBoard(ArrBoard);     // Displays the updated board
                 gameLogic(ArrBoard);
             }
@@ -111,7 +111,7 @@ void gameMenu(){
 void displayBoard(char ArrBoard[3][3]){
     for(int i = 0; i < 3; i++){
         for(int j = 0; j < 3; j++){
-            cout << ArrBoard[i][j] << " ";
+            cout << ArrBoard[i][j] << "\t";
         }
         cout << endl;
     }
@@ -168,7 +168,7 @@ void player1Choice(char ArrBoard[3][3]){
     }
 }
 
-void computerChoice(char ArrBoard[3][3]){
+void computerChoice(char ArrBoard[3][3], char arrayMoves[9]){
     int pos, moveCtr = 0, randNum;
 
     // Find the postion of the move chose by player 1
@@ -298,8 +298,8 @@ void computerChoice(char ArrBoard[3][3]){
                 checkBoard++;
                 randNum = 1;
         }
-        else if((ArrBoard[2][0] == 'X' && ArrBoard[2][2] == 'X' && ArrBoard[0][1] != 'O') ||
-            (ArrBoard[0][1] == 'X' && ArrBoard[1][1] == 'X' && ArrBoard[0][1] != 'O')
+        else if((ArrBoard[2][0] == 'X' && ArrBoard[2][2] == 'X' && ArrBoard[2][1] != 'O') ||
+            (ArrBoard[0][1] == 'X' && ArrBoard[1][1] == 'X' && ArrBoard[2][1] != 'O')
             ){
                 ArrBoard[2][1] = 'O';
                 checkBoard++;
