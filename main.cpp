@@ -109,11 +109,13 @@ void gameMenu(){
 }
 
 void displayBoard(char ArrBoard[3][3]){
+    cout << "+-----+-----+-----+\n";
     for(int i = 0; i < 3; i++){
         for(int j = 0; j < 3; j++){
-            cout << ArrBoard[i][j] << "\t";
+            cout << "|  " << ArrBoard[i][j] << "  ";
         }
-        cout << endl;
+        cout << "|\n";
+        cout << "+-----+-----+-----+\n";
     }
 }
 
