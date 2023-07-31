@@ -22,10 +22,10 @@ int main()
     char ArrBoard[3][3] ={{'1', '2', '3'},      // Array the will map the structure of the board
                           {'4', '5', '6'},
                           {'7', '8', '9'}};
-
+    selectGameMode:
     gameMenu();
 
-    cout << "Enter the number of your choice: ";
+    cout << "Enter the number for game mode: ";
     cin >> gameMode;
 
     switch(gameMode){
@@ -92,7 +92,10 @@ int main()
             break;
 
         default:
-            cout << "Invalid Input";
+            cout << "Invalid Input\n";
+            system("PAUSE");
+            system("CLS");
+            goto selectGameMode;
     }
 
     system("PAUSE");
@@ -103,6 +106,7 @@ int main()
 }
 
 void gameMenu(){
+    cout << "T I C  T A C  T O E\n\n";
     cout << "[1] - V S  C O M P U T E R\n\n";
     cout << "[2] - M U L T I P L A Y E R\n\n";
     cout << "[0] - E X I T\n\n";
@@ -117,12 +121,12 @@ void displayBoard(char ArrBoard[3][3]){
         cout << "|\n";
         cout << "+-----+-----+-----+\n";
     }
+    cout << endl;
 }
 
 void player1Choice(char ArrBoard[3][3]){
     top:
     // Ask input for player 1
-    cout << "\n";
     cout << "Player 1, Enter your move: ";
     cin >> p1;
 
@@ -188,8 +192,6 @@ void computerChoice(char ArrBoard[3][3], char arrayMoves[9]){
             moveCtr++;
         }
     }
-
-    cout << "\nComputer Move\n";
 
     top:
     srand(time(NULL));
